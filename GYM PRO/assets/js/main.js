@@ -1,0 +1,71 @@
+document.getElementById('bmiForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  let height = parseFloat(document.getElementById('height').value) / 100; // cm → m
+  let weight = parseFloat(document.getElementById('weight').value);
+  let bmi = (weight / (height * height)).toFixed(1);
+
+  let result = `Your BMI is ${bmi} - `;
+
+  if (bmi < 18.5) result += "Underweight";
+  else if (bmi < 24.9) result += "Normal weight";
+  else if (bmi < 29.9) result += "Overweight";
+  else result += "Obese";
+
+  document.getElementById('bmiResult').innerText = result;
+});
+
+
+
+
+// 1RM Percentage Calculator
+document.getElementById("oneRMForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const lift = parseFloat(document.getElementById("lift").value);
+  const metric = document.getElementById("metric").value;
+  const resultDiv = document.getElementById("oneRMResult");
+
+  if (isNaN(lift) || lift <= 0) {
+    resultDiv.innerHTML = "<p>Please enter a valid PR.</p>";
+    return;
+  }
+
+  // Define percentages and reps
+  const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50];
+  const reps = [1, 2, 4, 6, 8, 10, 12, 16, 20, 24, 30];
+
+  // Build table
+  let table = `
+    <table border="1" cellpadding="8" style="width:100%; margin-top:1rem; text-align:center; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Percentage</th>
+          <th>Lift Weight (${metric})</th>
+          <th>Reps</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  percentages.forEach((p, i) => {
+    const weight = Math.round(lift * (p / 100));
+    table += `
+      <tr>
+        <td>${p}%</td>
+        <td>${weight} ${metric}</td>
+        <td>${reps[i]}</td>
+      </tr>
+    `;
+  });
+
+  table += "</tbody></table>";
+  resultDiv.innerHTML = table;
+});
+
+const burger = document.getElementById("burger");
+const navLinks = document.getElementById("nav-links");
+
+burger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
