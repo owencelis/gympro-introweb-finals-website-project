@@ -87,7 +87,7 @@ body {
 .hero {
   text-align: center;
   padding: 5rem 2rem;
-  background: url('assets/hero-bg.jpg') center/cover no-repeat;
+  background: url('https://generationiron.com/wp-content/uploads/2025/03/unnamed-2-1024x576.jpg') center/cover no-repeat;
   height: 80vh;
   display: flex;
   align-items: center;
@@ -358,10 +358,42 @@ footer {
 .tag.cardio { background: #e63946; }
 .tag.nutrition { background: #28a745; }
 
+/* Gifs with information */
+.exercise {
+  position: relative;
+  display: inline-block;
+  margin: 1rem;
+  text-align: center;
+}
 
-/* ============================
-   Responsive Design
-   ============================ */
+.exercise img {
+  max-width: 250px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.exercise img:hover {
+  transform: scale(1.05);
+}
+
+.exercise-info {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 0.5rem;
+  transition: all 0.4s ease;
+}
+
+.exercise:hover .exercise-info {
+  opacity: 1;
+  max-height: 200px; /* enough for text */
+}
+
+
+/* Responsive Design */
 
 /* Tablets */
 @media (max-width: 992px) {
@@ -397,12 +429,32 @@ footer {
   .hero h1 { font-size: 1.8rem; }
   .btn { width: 100%; text-align: center; }
   form { width: 100%; padding: 1rem; }
+
+  /* ===== Dropdown Fix for Mobile ===== */
+  .dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    background: #000000;
+    width: 100%;
+    transition: max-height 0.3s ease-out;
+  }
+  .dropdown.active .dropdown-content {
+    max-height: 300px; /* big enough for menu items */
+  }
+  .dropdown > a {
+    cursor: pointer;
+    display: block;
+    padding: 0.5rem 0;
+  }
 }
 
+/* Small Phones */
 @media (max-width: 480px) {
   .logo { font-size: 1.5rem; }
   .hero h1 { font-size: 1.5rem; }
   .hero p { font-size: 0.9rem; }
   section h2 { font-size: 1.2rem; }
 }
+
 
